@@ -33,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok().body(userOpt.get());
     }
     @PutMapping("/put/{id}")
-    public ResponseEntity<User> updateEvento(@PathVariable Long id, @RequestBody User user){
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
         Optional<User> userOpt = userService.updateUser(user ,id);
         if(userOpt.isEmpty()){
             return ResponseEntity.notFound().build();

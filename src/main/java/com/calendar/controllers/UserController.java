@@ -16,15 +16,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/post")
+    @PostMapping("/create")
     public ResponseEntity<User> postUser(@RequestBody User user){
         return ResponseEntity.ok().body(userService.addUser(user));
     }
-    @GetMapping("/get")
+    @GetMapping("/userlist")
     public ResponseEntity<List<User>> getUserList(){
         return ResponseEntity.ok().body(userService.getUserList());
     }
-    @GetMapping("/getuser/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
         Optional<User> userOpt = userService.getUser(id);
         if(userOpt.isEmpty()){
@@ -32,7 +32,7 @@ public class UserController {
         }
         return ResponseEntity.ok().body(userOpt.get());
     }
-    @PutMapping("/put/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
         Optional<User> userOpt = userService.updateUser(user ,id);
         if(userOpt.isEmpty()){
